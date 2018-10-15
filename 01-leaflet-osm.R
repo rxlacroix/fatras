@@ -3,6 +3,9 @@ library(sf)
 library(leaflet)
 library(magrittr)
 
+getbb('district de Lausanne') %>% opq () %>% add_osm_feature("amenity", "pub") %>% osmdata_sf() %$% osm_points %>% leaflet() %>% addTiles() %>% addMarkers()
+
+
 lieu <- 'Montreux, Suisse'
 
 gir <- getbb(lieu) %>% opq () %>% add_osm_feature("junction", "roundabout") %>% 
