@@ -5,6 +5,11 @@ library(magrittr)
 
 getbb('district de Lausanne') %>% opq () %>% add_osm_feature("amenity", "pub") %>% osmdata_sf() %$% osm_points %>% leaflet() %>% addTiles() %>% addMarkers()
 
+v <- getbb('Chateauneuf-du-Pape, France') %>% opq () %>% add_osm_feature("landuse", "vineyard") %>% osmdata_sf() %$% osm_polygons
+names(v$geometry) <- NULL #ne pas oublier !!
+leaflet() %>% addProviderTiles(providers$Hydda.Base) %>% addPolygons(data = v, color = "purple", weight = 1)
+
+
 
 lieu <- 'Montreux, Suisse'
 
